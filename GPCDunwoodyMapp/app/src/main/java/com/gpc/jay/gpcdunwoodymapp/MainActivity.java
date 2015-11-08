@@ -4,14 +4,43 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private Integer images[] = {R.drawable.apex, R.drawable.beammeup, R.drawable.characterdesign1};
+    private int currImage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setInitialImage();
+        setImageRotateListener();
+    }
+
+    private void setImageRotateListener(){
+        final Button rotatebutton = (Button) findViewById(R.id.btnRotateImage);
+        rotatebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currImage = (currImage+1)%4;
+                setCurrentImage();
+            }
+        });
+    }
+
+    private void setInitialImage(){
+        setCurrentImage();
+    }
+
+    private void setCurrentImage(){
+        final ImageView imageView = (ImageView)findViewById(R.id.imageDisplay);
+        imageView.setImageResource(images[currImage]);
     }
 
 
