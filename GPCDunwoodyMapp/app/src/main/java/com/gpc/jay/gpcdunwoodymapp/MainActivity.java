@@ -28,7 +28,7 @@ public class MainActivity extends ActionBarActivity {
         rotatebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currImage = (currImage+1)%4;
+                currImage = (currImage+1)%3;
                 setCurrentImage();
             }
         });
