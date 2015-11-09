@@ -11,18 +11,33 @@ import java.util.Stack;
 public class Pathing {
 
     public static Stack<Node> findPathBetween(Node start, Node end){
-        ArrayList<Queue<Node>> levels = new ArrayList<Queue<Node>>();
+        Queue<Node> bfsQueue = new LinkedList<Node>();
         Stack<Node> visited = new Stack<Node>();
-        Node currNode = start;
-        levels.add(new LinkedList<Node>());
+        Stack<Node> path;
+        bfsQueue.add(start);
+        visited.push(start);
 
-        int currLevel = 0;
-        while (!(currNode == end) && !levels.get(levels.size()-1).isEmpty()){
+        Node currNode;
+        do{
+            currNode = bfsQueue.poll();
 
-        }
+            for(Node node:currNode.getConnectingNodes()){
+                if(!node.isVisited()) {
+                    node.setPrev(currNode);
+                    bfsQueue.add(node);
+                    visited.push(node);
+                    node.visit();
+                }
 
+                if(node==end){
+                    path = generatePathStack(currNode, true);
+                    break;
+                }
+            }
+        }while(!bfsQueue.isEmpty());
 
-        Stack<Node> path = generatePathStack(currNode, true);
+        path = generatePathStack(currNode, false);
+
         Node visitedNode;
         while(!visited.isEmpty()){
             visitedNode = visited.pop();
