@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".User_Input_Actiivity"
+            android:name=".User_Input_Activity"
             android:label="@string/title_activity_user__input__actiivity"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
